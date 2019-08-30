@@ -2,36 +2,41 @@ import argparse
 import os
 import sys
 
-my_parser = argparse.ArgumentParser(
+parser = argparse.ArgumentParser(
     prog='ng2django',
     description='Convert an Angular2+ generated HTML file to Django Template Language')
 
-my_parser.add_argument(
-    'Path',
-    metavar='path',
+parser.add_argument(
+    'source',
+    metavar='source',
     type=str,
-    help='the path to the list')
+    help='path to the Angular2+ generated HTML file')
 
-my_parser.add_argument(
+parser.add_argument(
+    'dest',
+    metavar='dest',
+    type=str,
+    help='path to the output Django Template file')
+
+parser.add_argument(
     '-n',
     '--nodelete',
     action='store_true',
     help='do not delete the original file')
 
-my_parser.add_argument(
+parser.add_argument(
     '-p',
     '--pretty',
     action='store_true',
     help='do not uglify the output file')
 
-args = my_parser.parse_args()
+args = parser.parse_args()
 
-input_path = args.Path
+source_path = args.source
+dest_path = args.dest
 
-if not os.path.isdir(input_path):
-    print('The specified path does not exist')
+if not os.path.isfile(source_path):
+    print('The specified source file does not exist')
     sys.exit()
 
 print(args.pretty)
-
-print('\n'.join(os.listdir(input_path)))
