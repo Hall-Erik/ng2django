@@ -77,6 +77,7 @@ if args.pretty:
 else:
     output = soup.encode('utf-8')
 
+os.makedirs(os.path.dirname(dest_path), exist_ok=True)
 with open(dest_path, 'wb') as f:
     f.write(output)
 
