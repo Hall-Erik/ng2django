@@ -2,3 +2,6 @@ test_files/
 venv/
 .vscode/
 __pycache__/
+ng2django.egg-info/
+build/
+dist/
