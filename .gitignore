@@ -1,3 +1,4 @@
 test_files/
 venv/
 .vscode/
+__pycache__/
