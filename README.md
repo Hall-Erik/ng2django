@@ -11,6 +11,10 @@ The script basically does two things:
 
 The script uses Beutifulsoup4. You can install it by running `pip install -r requirements.txt`.
 
+## Install
+
+Just run `$ pip install ng2django`
+
 ## Usage
 
 Build your Angular app and place the files in `<Django-project-root>/<app>/static/<optional-subdirectory>/`.
@@ -22,11 +26,11 @@ The script takes two positional arguments:
 
 Then you can run
 
-`$ python ng2django.py <Django-project-root>/<app>/static/index.html <Django-project-root>/<app>/templates/index.html`
+`$ ng2django <Django-project-root>/<app>/static/index.html <Django-project-root>/<app>/templates/index.html`
 
 if you are storing your files directly in your Django app's `static` and `templates` directories (not recommended), or
 
-`$ python ng2django.py <Django-project-root>/<app>/static/<optional-subdirectory>/index.html <Django-project-root>/<app>/templates/<optional-subdirectory>/index.html -s <optional-subdirectory>`
+`$ ng2django <Django-project-root>/<app>/static/<optional-subdirectory>/index.html <Django-project-root>/<app>/templates/<optional-subdirectory>/index.html -s <optional-subdirectory>`
 
 if you are using some subdirectory of those paths.
 
@@ -40,15 +44,13 @@ Short | Long | Description
 
 ## Recommended Setup and Usage
 
-Copy the `ng2django.py` file into your Angular project root.
-
-Open you `package.json` file. Under `scripts`, change `build` to
+In you Angular project open your `package.json` file. Under `scripts`, change `build` to
 
 `ng build --prod --output-path <Your-django-project-root>/<Django-App>/static/ng`.
 
 Add a `postbuild` key under `script` and set the value to
 
-`python ng2django.py <Your-django-project-root>/<Django-App>/static/ng/index.html <Your-django-project-root>/<Django-App>/templates/ng/index.html -s ng`.
+`ng2django <Your-django-project-root>/<Django-App>/static/ng/index.html <Your-django-project-root>/<Django-App>/templates/ng/index.html -s ng`.
 
 Run `npm run build` and your Angular JS and CSS files will be saved to your Django app's static directory. Then, this script will run and convert your HTML file and save it in your Django app's templates directory.
 
