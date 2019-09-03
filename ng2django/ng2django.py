@@ -56,7 +56,6 @@ def main():
     if sub_path:
         if sub_path[-1] != '/':
             sub_path = sub_path + '/'
-        print(sub_path)
     else:
         sub_path = ''
 
