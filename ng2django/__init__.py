@@ -1,0 +1,1 @@
+from .ng2django import main

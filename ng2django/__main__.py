@@ -1,3 +1,3 @@
-from ng2django import main
+from .ng2django import main
 
 main()
