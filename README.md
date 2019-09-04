@@ -1,5 +1,8 @@
 # ng2django
 
+![PyPI](https://img.shields.io/pypi/v/ng2django)
+![PyPI - License](https://img.shields.io/pypi/l/ng2django)
+
 This is a simple Python tool that will convert an HTML file built by Angular2+ to Django Template Language. This way static files can be made available to an Agnular app that is served up with a Django project.
 
 The script basically does two things:
