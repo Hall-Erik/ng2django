@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
   name = 'ng2django',
-  version = '0.1.4',
+  version = '19.10.23',
   author = 'Erik Hall',
   author_email = 'hall.erik@gmail.com',
   description = 'Convert your Angular built index.html file to Django Template syntax',
@@ -22,7 +22,7 @@ setuptools.setup(
           'beautifulsoup4',
       ],
   classifiers=[
-    'Development Status :: 3 - Alpha',
+    'Development Status :: 4 - Beta',
     'Intended Audience :: Developers',
     'Topic :: Software Development :: Build Tools',
     'License :: OSI Approved :: MIT License',

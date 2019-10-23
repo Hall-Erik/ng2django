@@ -60,3 +60,13 @@ Run `npm run build` and your Angular JS and CSS files will be saved to your Djan
 ## Contributing
 
 Contributions are welcome - submit an issue/pull request.
+
+## Push to PyPi
+
+Use these commands to release on PyPi
+
+<code>
+    rm -rf dist/ build/<br>
+    python setup.py sdist<br>
+    twine upload dist/*
+</code>

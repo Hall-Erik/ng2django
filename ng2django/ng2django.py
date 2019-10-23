@@ -63,12 +63,14 @@ def main():
         soup = BeautifulSoup(index, 'html.parser')
 
     for el in soup.find_all('link'):
-        el['href'] = f'{{% static "{sub_path}{el.get("href")}" %}}'
+        if el.get("href")[0:4] != "http":
+            el['href'] = f'{{% static "{sub_path}{el.get("href")}" %}}'
 
     for el in soup.find_all('script'):
-        el['src'] = f'{{% static "{sub_path}{el.get("src")}" %}}'
-        del el['nomodule']
-        el['type'] = 'text/javascript'
+        if el.get("src")[0:4] != "http":
+            el['src'] = f'{{% static "{sub_path}{el.get("src")}" %}}'
+            del el['nomodule']
+            el['type'] = 'text/javascript'
 
     soup.insert(0,'{% load static %}')
 
