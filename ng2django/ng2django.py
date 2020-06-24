@@ -65,7 +65,7 @@ def main():
     for el in soup.find_all('link'):
         if el.get("href")[0:4] != "http":
             if el['href'].endswith('.css'):
-                el['href'] = f'{{% static "angular/css/{sub_path}{el.get("href")}" %}}'
+                el['href'] = f'{{% static "{sub_path}{el.get("href")}" %}}'
             else:
                 if el['href'].lower().endswith(('ico', '.png', '.jpg', '.jpeg', '.tiff', '.bmp', '.gif')):
                     el['href'] = f'{{% static "{sub_path}{el.get("href")}" %}}'
@@ -73,7 +73,7 @@ def main():
 
     for el in soup.find_all('script'):
         if el.get("src")[0:4] != "http":
-            el['src'] = f'{{% static "angular/js/{sub_path}{el.get("src")}" %}}'
+            el['src'] = f'{{% static "{sub_path}{el.get("src")}" %}}'
             del el['nomodule']
             el['type'] = 'text/javascript'
 
