@@ -54,6 +54,9 @@ In you Angular project open your `package.json` file. Under `scripts`, change `b
 Add a `postbuild` key under `script` and set the value to
 
 `ng2django <Your-django-project-root>/<Django-App>/static/ng/index.html <Your-django-project-root>/<Django-App>/templates/ng/index.html -s ng`.
+or if you have css / js / images in seperate directories within static use args: -css css -js js -img img
+`ng2django <Your-django-project-root>/<Django-App>/static/ng/index.html <Your-django-project-root>/<Django-App>/templates/ng/index.html -s ng -css css -js js -img img`.
+
 
 Run `npm run build` and your Angular JS and CSS files will be saved to your Django app's static directory. Then, this script will run and convert your HTML file and save it in your Django app's templates directory.
 
