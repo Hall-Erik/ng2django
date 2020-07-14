@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
   name = 'ng2django',
-  version = '19.10.23',
+  version = '20.07.13',
   author = 'Erik Hall',
   author_email = 'hall.erik@gmail.com',
   description = 'Convert your Angular built index.html file to Django Template syntax',
