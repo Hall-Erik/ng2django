@@ -32,6 +32,33 @@ def main():
     )
 
     parser.add_argument(
+        '-js',
+        '--jsdir',
+        type=str,
+        help='subdirectory if you have your .js files in js dir.'
+             ' (e.g. static/<optional-subdir>/<js>/runtime-es2015.js)',
+        required=False
+    )
+
+    parser.add_argument(
+        '-css',
+        '--cssdir',
+        type=str,
+        help='subdirectory if you have your .css files in css dir.'
+             ' (e.g. static/<optional-subdir>/<css>/style.css)',
+        required=False
+    )
+
+    parser.add_argument(
+        '-img',
+        '--imgdir',
+        type=str,
+        help='subdirectory if you have your image files in e.g. img/image dir.'
+             ' (e.g. static/<optional-subdir>/<img>/img.png)',
+        required=False
+    )
+
+    parser.add_argument(
         '-n',
         '--nodelete',
         action='store_true',
@@ -48,6 +75,9 @@ def main():
     source_path = args.source
     dest_path = args.dest
     sub_path = args.subdir
+    js_path = args.jsdir
+    css_path = args.cssdir
+    img_path = args.imgdir
 
     if not os.path.isfile(source_path):
         print('The specified source file does not exist')
@@ -59,20 +89,42 @@ def main():
     else:
         sub_path = ''
 
+    if js_path:
+        if js_path[-1] != '/':
+            js_path = js_path + '/'
+    else:
+        js_path = ''
+
+    if css_path:
+        if css_path[-1] != '/':
+            css_path = css_path + '/'
+    else:
+        css_path = ''
+
+    if img_path:
+        if img_path[-1] != '/':
+            img_path = img_path + '/'
+    else:
+        img_path = ''
+
     with open(source_path) as index:
         soup = BeautifulSoup(index, 'html.parser')
 
     for el in soup.find_all('link'):
         if el.get("href")[0:4] != "http":
-            el['href'] = f'{{% static "{sub_path}{el.get("href")}" %}}'
+            if el['href'].endswith('.css'):
+                el['href'] = f'{{% static "{sub_path}{css_path}{el.get("href")}" %}}'
+            else:
+                if el['href'].lower().endswith(('ico', '.png', '.jpg', '.jpeg', '.tiff', '.bmp', '.gif')):
+                    el['href'] = f'{{% static "{sub_path}{img_path}{el.get("href")}" %}}'
 
     for el in soup.find_all('script'):
         if el.get("src")[0:4] != "http":
-            el['src'] = f'{{% static "{sub_path}{el.get("src")}" %}}'
+            el['src'] = f'{{% static "{sub_path}{js_path}{el.get("src")}" %}}'
             del el['nomodule']
             el['type'] = 'text/javascript'
 
-    soup.insert(0,'{% load static %}')
+    soup.insert(1,'{% load static %}')
 
     if args.pretty:
         output = soup.prettify('utf-8')

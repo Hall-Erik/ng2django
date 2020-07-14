@@ -42,6 +42,9 @@ if you are using some subdirectory of those paths.
 Short | Long | Description
 --- | --- | ---
 -s `<subdir>` | --subdir `<subdir>` | Include the subpath under `<Django-app>/static/` where your static files are stored.
+-css `<cssdir>` | --cssdir `<cssdir>` | Include the subpath under `<Django-app>/static/<optional-subdir>/css/` where your static CSS files are stored.
+-js `<jsbdir>` | --jsdir `<jsir>` | Include the subpath under `<Django-app>/static/<optional-subdir>/js/` where your static JS files are stored.
+-img `<imgbdir>` | --imgdir `<imgdir>` | Include the subpath under `<Django-app>/static/<optional-subdir>/img/` where your static IMAGE files are stored.
 -n | --nodelete | Do not delete the source file after converting.
 -p | --pretty | Create a dest file that is more human readable.
 
@@ -54,6 +57,11 @@ In you Angular project open your `package.json` file. Under `scripts`, change `b
 Add a `postbuild` key under `script` and set the value to
 
 `ng2django <Your-django-project-root>/<Django-App>/static/ng/index.html <Your-django-project-root>/<Django-App>/templates/ng/index.html -s ng`.
+
+
+Or if you have css / js / images in seperate directories within static use args: -css css -js js -img img
+`ng2django <Your-django-project-root>/<Django-App>/static/ng/index.html <Your-django-project-root>/<Django-App>/templates/ng/index.html -s ng -css css -js js -img img`.
+
 
 Run `npm run build` and your Angular JS and CSS files will be saved to your Django app's static directory. Then, this script will run and convert your HTML file and save it in your Django app's templates directory.
 
