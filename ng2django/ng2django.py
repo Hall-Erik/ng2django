@@ -111,7 +111,7 @@ def main():
         soup = BeautifulSoup(index, 'html.parser')
 
     for el in soup.find_all('link'):
-        if el.get("href")[0:4] != "http":
+        if el.get("href") and el.get("href")[0:4] != "http":
             if el['href'].endswith('.css'):
                 el['href'] = f'{{% static "{sub_path}{css_path}{el.get("href")}" %}}'
             else:
@@ -119,7 +119,7 @@ def main():
                     el['href'] = f'{{% static "{sub_path}{img_path}{el.get("href")}" %}}'
 
     for el in soup.find_all('script'):
-        if el.get("src")[0:4] != "http":
+        if el.get("src") and el.get("src")[0:4] != "http":
             el['src'] = f'{{% static "{sub_path}{js_path}{el.get("src")}" %}}'
             del el['nomodule']
             el['type'] = 'text/javascript'
